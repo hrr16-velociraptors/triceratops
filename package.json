@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HRR16-velociraptors/triceratops.git"
+    "url": "git+https://github.com/hrr16-velociraptors/triceratops.git"
   },
   "keywords": [
     "hot-tub-tonight"
@@ -22,9 +22,9 @@
   "author": "Team Velociraptors",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HRR16-velociraptors/triceratops/issues"
+    "url": "https://github.com/hrr16-velociraptors/triceratops/issues"
   },
-  "homepage": "https://github.com/HRR16-velociraptors/triceratops#readme",
+  "homepage": "https://github.com/hrr16-velociraptors/triceratops#readme",
   "dependencies": {
     "axios": "^0.11.1",
     "babel-cli": "^6.9.0",
