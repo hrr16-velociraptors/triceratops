@@ -5,11 +5,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Share Anything App</title>
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+    var socket = io.connect();
+    socket.on('connect', function(data) {
+        socket.emit('join', 'Hello World from client');
+        console.log("connected")
+    });
+</script>
 </head>
 
 <body>
   <div id="root">
   </div>
+
+
   <!-- Need to change after -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOQHHGcQGGgCWJPvOaMmy61P_1rXQgo7k&libraries=places"></script>
   <script src="./bundle.js"></script>
