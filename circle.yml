@@ -5,11 +5,11 @@ deployment:
   staging:
     branch: staging
     heroku:
-      appname: share-anything-staging
+      appname: share-anything-staging2
   prod:
     branch: master
     heroku:
-      appname: share-anything
+      appname: share-anything2
 test:
   override:
     - npm test
