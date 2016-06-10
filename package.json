@@ -1,6 +1,6 @@
 {
-  "name": "triceratops",
-  "version": "1.0.0",
+  "name": "legacy",
+  "version": "2.0.0",
   "description": "You've got stuff that people want. Other people have stuff that you want. Instead of being envious, why not make some extra cash? Share Anything is a community that allows users to easily share anything for a price.",
   "scripts": {
     "start": "node index.js",
@@ -14,17 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HRR16-triceratops/triceratops.git"
+    "url": "git+https://github.com/hrr16-velociraptors/triceratops.git"
   },
   "keywords": [
     "hot-tub-tonight"
   ],
-  "author": "Team Triceratops",
+  "author": "Team Velociraptors",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HRR16-triceratops/triceratops/issues"
+    "url": "https://github.com/hrr16-velociraptors/triceratops/issues"
   },
-  "homepage": "https://github.com/HRR16-triceratops/triceratops#readme",
+  "homepage": "https://github.com/hrr16-velociraptors/triceratops#readme",
   "dependencies": {
     "axios": "^0.11.1",
     "babel-cli": "^6.9.0",
