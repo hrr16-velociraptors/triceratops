@@ -4,6 +4,8 @@ var router = express.Router();
 var utils = require('../../utils/utils.js');
 var jwt = require('jsonwebtoken');
 var secret = process.env.JWT_SECRET || 'sleepingpuppies';
+//Added this line for stripe payment
+var stripe = require("stripe")("sk_test_mOcnZGfWiOqaZ3oygDXWEUSH");
 
 /**
  *  Request Handler for POST Method
@@ -107,5 +109,31 @@ router.get('/verify', function(req, res) {
       });
   });
 });
+//========================================================
+router.post('/payment', function(req, res){
+
+// (Assuming you're using express - expressjs.com)
+// Get the credit card details submitted by the form
+  var stripeToken = req.body.id;
+  var amount = req.body.amount;
+  console.log(req.body);
+  // var stripeToken = req.body.stripeToken;
+
+
+  var charge = stripe.charges.create({
+    amount: amount, // amount in cents, again
+    currency: "usd",
+    source: stripeToken,
+    description: "Example charge"
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      // The card has been declined
+      console.log(err);
+    } else {
+      console.log("Payment accepted Thank you")
+    }
+  });
+})
+//==========================================================
 
 module.exports = router;
