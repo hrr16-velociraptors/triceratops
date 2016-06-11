@@ -1,14 +1,15 @@
 import React from 'react';
 import { Component } from 'react';
 import ChatBar from '../containers/ChatBarContainer'
+import ChatMessages from '../components/ChatMessages'
 
 export default class Chat extends Component {
-  constructor() {
+  constructor(props) {
     super(props)
   }
   componentDidMount() {
     // make sure this function gets passed in from container
-    this.props.setupChat();
+    this.props.chatSetup();
   }
   render () {
     return (

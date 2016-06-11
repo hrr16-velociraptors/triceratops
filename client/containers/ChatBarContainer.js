@@ -1,5 +1,6 @@
-import * as actions from '../actions.js'
-import ChatBar from '../ChatBar.js'
+import * as actions from '../actions'
+import ChatBar from '../components/ChatBar'
+import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -9,7 +10,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const mapStateToStore = (state) => {
+const mapStateToProps = (state) => {
   return {};
 }
 

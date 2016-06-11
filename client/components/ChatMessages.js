@@ -6,14 +6,21 @@ export default class ChatMessages extends Component {
     super(props);
   }
   render() {
-    return (
-      <div>
-        {this.props.messages.map(m => (
-          <div key={m.id}>
-            {m.text}
-          </div>
-        ))}
-      </div>
-    );
+    if (this.props.messages.length) {
+      return (
+        <div>
+          {this.props.messages.map(m => (
+              <div key={m.id}>
+              {m.text}
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+        </div>
+      );
+    }
   }
 }
