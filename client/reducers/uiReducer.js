@@ -55,7 +55,7 @@ export default (state = {
     return {
       ...state,
       popup: {
-        content: 'Rent Success',
+        content: 'Rent Success says Tyrus',
         open: true
       }
     };
