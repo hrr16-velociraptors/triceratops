@@ -7,6 +7,21 @@ import { reset } from 'redux-form';
 // Synchronous Action Creators
 //////////////////////////////////////////////////////////////
 
+// Chat actions
+export const messageSent = (text) => {
+  return {
+    type: types.MESSAGE_SENT,
+    text // for debug purposes only
+  };
+};
+
+export const messageReceived = (message) => {
+  return {
+    type: types.MESSAGE_RECEIVED,
+    message
+  }
+}
+
 // Map actions
 export const setMarkerCenter = (pos) => {
   return {
@@ -305,6 +320,29 @@ export const commentSuccess = (updatedCommentsForProduct) => {
 //////////////////////////////////////////////////////////////
 // Asynchronous Action Creator combination
 //////////////////////////////////////////////////////////////
+
+/**
+*  @param {String} messageText - Text of outbound message
+*/
+export const sendMessage = (messageText) {
+  return (dispatch) => {
+    var pack = {
+      // no need to include user, read from JWT
+      // user:
+      message: messageText
+    }
+    helper.sendSock(pack);
+    dispatch(messageSent(messageText));
+  }
+}
+
+export const chatSetup = () {
+  return (dispatch) => {
+    helper.startSock((message) => {
+      dispatch(messageReceived(message));
+    });
+  }
+}
 
 /**
 *  @param {Object} userData - Login credentials (username, password)
