@@ -23,12 +23,14 @@
     <script>
       var socket = io();
       $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
+        var packet = {user: "John", message: $('#m').val()}
+        socket.emit('chat message', packet);
         $('#m').val('');
         return false;
       });
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
+        console.log(msg)
+        $('#messages').append($('<li>').text("user: "+ msg.user+ "  message: "+msg.message));
       });
     </script>
   </body>
