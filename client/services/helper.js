@@ -2,9 +2,13 @@ import axios from 'axios';
 import io from 'socket.io-client';
 
 var startSock = function (cb) {
+  var message;
   // io.something
   // on.receiveMessage
-  cb(message);
+  if (false) {
+    cb(message);
+
+  }
   // return something that's a promise
 }
 
@@ -113,5 +117,6 @@ module.exports = {
   putHelper: putHelper,
   deleteHelper: deleteHelper,
   geoFindMe: geoFindMe,
-  sockHelper: sockHelper
+  startSock: startSock,
+  sendSock: sendSock
 };

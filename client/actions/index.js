@@ -311,7 +311,7 @@ export const commentSuccess = (updatedCommentsForProduct) => {
 /**
 *  @param {String} messageText - Text of outbound message
 */
-export const sendMessage = (messageText) {
+export const sendMessage = (messageText) => {
   return (dispatch) => {
     var pack = {
       // no need to include user, read from JWT
@@ -323,7 +323,7 @@ export const sendMessage = (messageText) {
   }
 }
 
-export const chatSetup = () {
+export const chatSetup = () => {
   return (dispatch) => {
     helper.startSock((message) => {
       dispatch(messageReceived(message));
