@@ -6,6 +6,7 @@ import auth from './authReducer.js';
 import user from './userReducer.js';
 import products from './productsReducer.js';
 import ui from './uiReducer.js';
+import chat from './chatReducer.js'
 
 /**
  *  Root Reducer that combines every Reducers
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   user,
   ui,
   products,
-  routing
+  routing,
+  chat
 });
 
 export default rootReducer;

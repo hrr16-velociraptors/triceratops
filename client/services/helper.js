@@ -1,4 +1,16 @@
 import axios from 'axios';
+import io from 'socket.io-client';
+
+var startSock = function (cb) {
+  // io.something
+  // on.receiveMessage
+  cb(message);
+  // return something that's a promise
+}
+
+var sendSock = function () {
+  // io.something
+};
 
 /**
  *  Access JWT token from user's browser. If user has no token,
@@ -100,5 +112,6 @@ module.exports = {
   getHelper: getHelper,
   putHelper: putHelper,
   deleteHelper: deleteHelper,
-  geoFindMe: geoFindMe
+  geoFindMe: geoFindMe,
+  sockHelper: sockHelper
 };
