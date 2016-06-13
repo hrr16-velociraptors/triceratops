@@ -55,7 +55,7 @@ export default (state = {
     return {
       ...state,
       popup: {
-        content: 'Rent Success says Tyrus',
+        content: 'The Date you picked has been reserved',
         open: true
       }
     };
