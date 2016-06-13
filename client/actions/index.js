@@ -478,6 +478,8 @@ export const attemptRentitem = (date, id) => {
     .then(resp => {
       var updatedState = resp.data;
       if (resp.status == 200) {
+        //right here is where we need to add the pop up for the 
+        //rentSuccess emits the 
         dispatch(rentSuccess(updatedState));
       }
     })

@@ -2,16 +2,23 @@ import React from 'react';
 import { Component } from 'react';
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
+//added this line to import stripe checkout
+import StripeCheckout from 'react-stripe-checkout';
 
 class RentDateComponent extends Component {
   constructor(props){
     super(props);
-  }
+  };
 
   attemptRentitem(data) {
     data.username = this.props.user.username;
     this.props.attemptRentitem(data, this.props.item._id);
-  }
+  };
+  onToken(token){
+    xhrStripeTokenToMyServer(token).then( => {
+      // please do with HTTPS
+    });
+  };
 
   render(){
     const { fields, handleSubmit } = this.props;
@@ -28,7 +35,12 @@ class RentDateComponent extends Component {
             return this.props.disableDate.indexOf(date.toString()) !== -1;
           }}
         />
-        <RaisedButton type="submit" label="Rent" style={{float:'right'}} />
+        <RaisedButton type="submit" label="Confirm Rental Date" style={{float:'right'}} />
+
+        <StripeCheckout
+          token={this.onToken}
+          allowRememberMe={false}
+          stripeKey="pk_test_g30q1NSYR71zAPQs8yu4LVGS" />
       </form>
     );
   }

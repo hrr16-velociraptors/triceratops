@@ -55,7 +55,7 @@ export default (state = {
     return {
       ...state,
       popup: {
-        content: 'Rent Success',
+        content: 'The Date you picked has been reserved',
         open: true
       }
     };
