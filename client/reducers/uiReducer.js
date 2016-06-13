@@ -59,6 +59,15 @@ export default (state = {
         open: true
       }
     };
+    //Adding payment popups for stripe credit card payment
+    case types.PAYMENT_SUCCESS:
+    return {
+      ...state,
+      popup: {
+        content: 'Your Payment has been Accepted Thank You!',
+        open: true
+      }
+    };
     case types.POPUP_CLOSE:
     return {
       ...state,
