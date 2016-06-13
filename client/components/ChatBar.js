@@ -47,7 +47,7 @@ export default class ChatBar extends Component {
               type="text"
               value={this.state.message}
             />
-            <input type="submit" value="Submit" />
+            <input className="submitButton" type="submit" value="Submit" />
           </form>
         </div>
       </div>

@@ -11,6 +11,46 @@ body {
   background-color: #F3F9FA;
 }
 
+.chatButton{
+  width: 216px;
+  float: right;
+  right: 0px;
+  position: fixed;
+
+}
+.submitButton{
+  background: rgb(130, 224, 255);
+}
+
+.container{
+  position: fixed;
+  bottom: 0px;
+  float: left;
+  left: 0px;
+}
+
+.chatBox{
+  left: 0px;
+  position: fixed;
+  width: 232px;
+  float: left;
+  bottom: 0;
+  z-index: 1000;
+  border: 1px solid #000000;
+  height: 400px;
+  background-color: #ffffff;
+}
+
+.chatBar{
+  float: left;
+
+}
+.chatMessages{
+  height: 400px;
+  background-color: #ffffff;
+  float: left;
+}
+
 #root {
   max-width: 80%;
   padding: 10px 20px;
