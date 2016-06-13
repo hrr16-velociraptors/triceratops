@@ -55,7 +55,16 @@ export default (state = {
     return {
       ...state,
       popup: {
-        content: 'Rent Success',
+        content: 'The Date you picked has been reserved',
+        open: true
+      }
+    };
+    //Adding payment popups for stripe credit card payment
+    case types.PAYMENT_SUCCESS:
+    return {
+      ...state,
+      popup: {
+        content: 'Your Payment has been Accepted Thank You!',
         open: true
       }
     };

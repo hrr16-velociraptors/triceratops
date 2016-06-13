@@ -6,6 +6,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     attemptRentitem: (data, id) => {
       dispatch(actions.attemptRentitem(data, id));
+    },
+    onToken: (data) => {
+      dispatch(actions.onToken(data));
     }
   };
 };

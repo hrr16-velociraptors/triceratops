@@ -29,6 +29,10 @@ export const RENT_SUCCESS = 'RENT_SUCCESS';
 export const RENT_FAILURE = 'RENT_FAILURE';
 export const CANCEL_SUCCESS = 'CANCEL_SUCCESS';
 export const CANCEL_FAILURE = 'CANCEL_FAILURE';
+//Tyrus- added following two lines for stripe payment
+export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
+export const PAYMENT_FAILURE = 'PAYMENT_FAILURE';
+
 
 /**
  *  Action related to UI and others...
