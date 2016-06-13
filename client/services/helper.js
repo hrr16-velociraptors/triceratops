@@ -1,15 +1,15 @@
 import axios from 'axios';
 import io from 'socket.io-client';
+var socket = io();
 
 var startSock = function (cb) {
-  // io.something
-  // on.receiveMessage
-  cb(message);
-  // return something that's a promise
+  socket.on('chat message', function(msg) {
+    cb(msg);
+  });
 }
 
-var sendSock = function () {
-  // io.something
+var sendSock = function (packet) {
+  socket.emit('chat message', packet);
 };
 
 /**
@@ -113,5 +113,6 @@ module.exports = {
   putHelper: putHelper,
   deleteHelper: deleteHelper,
   geoFindMe: geoFindMe,
-  sockHelper: sockHelper
+  startSock: startSock,
+  sendSock: sendSock
 };

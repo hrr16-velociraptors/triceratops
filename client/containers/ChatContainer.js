@@ -1,14 +1,19 @@
-import * as actions from '../actions.js'
-import Chat from '../Chat.js'
+import * as actions from '../actions'
+import Chat from '../components/Chat.js'
+import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUpChat: dispatch(actions.chatSetup());
+    chatSetup: () => {
+      dispatch(actions.chatSetup());
+    }
   }
 }
 
-const mapStateToStore = (state) => {
-  return {};
+const mapStateToProps = (state) => {
+  return {
+    messages: state.chat
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

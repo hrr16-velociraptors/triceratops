@@ -18,7 +18,10 @@ export const messageSent = (text) => {
 export const messageReceived = (message) => {
   return {
     type: types.MESSAGE_RECEIVED,
-    message
+    message: {
+      id: message.id,
+      message: message.message.message
+    }
   }
 }
 
@@ -311,7 +314,7 @@ export const commentSuccess = (updatedCommentsForProduct) => {
 /**
 *  @param {String} messageText - Text of outbound message
 */
-export const sendMessage = (messageText) {
+export const sendMessage = (messageText) => {
   return (dispatch) => {
     var pack = {
       // no need to include user, read from JWT
@@ -323,7 +326,7 @@ export const sendMessage = (messageText) {
   }
 }
 
-export const chatSetup = () {
+export const chatSetup = () => {
   return (dispatch) => {
     helper.startSock((message) => {
       dispatch(messageReceived(message));

@@ -49,6 +49,7 @@ export default class ChatBar extends Component {
             />
             <input type="submit" value="Submit" />
           </form>
+        </div>
       </div>
     );
   }
