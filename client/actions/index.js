@@ -18,7 +18,10 @@ export const messageSent = (text) => {
 export const messageReceived = (message) => {
   return {
     type: types.MESSAGE_RECEIVED,
-    message
+    message: {
+      id: message.id,
+      message: message.message.message
+    }
   }
 }
 
