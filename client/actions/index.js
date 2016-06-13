@@ -44,8 +44,21 @@ export const popupOpen = (content, keyword = 'general') => {
       content: content
     }
   };
+};\
+//====================================================
+// payment actions
+const paymentSuccess = (data) => {
+  return {
+    type: types.PAYMENT_SUCCESS,
+    payload: data
+  };
 };
-
+const paymentFailure = () => {
+  return {
+    type: types.PAYMENT_FAILURE
+  };
+};
+//=====================================================
 // product actions
 const rentSuccess = (data) => {
   return {
@@ -470,7 +483,24 @@ export const fetchUpdatedProducts = (id = '') => {
     });
   };
 };
-
+export const onToken = (data) => {
+  return dispatch => {
+    const url = '/auth';
+    helper.postHelper(url, data)
+    .then(resp => {
+      var updatedState = resp.data;
+      if (resp.status == 200) {
+        //right here is where we need to add the pop up for the 
+        //rentSuccess emits the 
+        dispatch(paymentSuccess(updatedState));
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      dispatch(paymentFailure());
+    });
+  };
+};
 export const attemptRentitem = (date, id) => {
   return dispatch => {
     const url = '/products/rent/' + id;

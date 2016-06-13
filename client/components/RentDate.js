@@ -15,9 +15,12 @@ class RentDateComponent extends Component {
     this.props.attemptRentitem(data, this.props.item._id);
   };
   onToken(token){
-    xhrStripeTokenToMyServer(token).then( => {
-      // please do with HTTPS
-    });
+    data.stripeToken = token;
+    this.props.onToken(data);
+    //following xhr... is an example of a function
+    // xhrStripeTokenToMyServer(token).then( => {
+    //   // please do with HTTPS
+    // });
   };
 
   render(){
