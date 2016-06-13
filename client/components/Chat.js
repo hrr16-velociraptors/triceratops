@@ -14,9 +14,13 @@ export default class Chat extends Component {
   render () {
     return (
       <div>
+      <button id="chatButton" onclick="chatDisplay();">Chat</button>
+      <div className="chatBox">
+      
         {/* make sure messages gets passed from store from container */}
         <ChatMessages messages={this.props.messages}/>
         <ChatBar />
+        </div>
       </div>
     );
   }
