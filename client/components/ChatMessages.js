@@ -8,7 +8,7 @@ export default class ChatMessages extends Component {
   render() {
     if (this.props.messages.length) {
       return (
-        <div>
+        <div className="chatMessages">
           {this.props.messages.map(m => (
               <div key={m.id}>
               {m.message}
