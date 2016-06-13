@@ -11,7 +11,7 @@ export default class ChatMessages extends Component {
         <div>
           {this.props.messages.map(m => (
               <div key={m.id}>
-              {m.text}
+              {m.message}
             </div>
           ))}
         </div>
