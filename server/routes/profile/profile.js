@@ -10,7 +10,7 @@ var secret = process.env.JWT_SECRET || 'sleepingpuppies';
  *                            2. Complete user data including the field need to be updated(req.body)
  *  @expected Header with Req - { "Authorization": "Bearer <JWT_TOKEN>"}
  */
-router.put('/:id', expressJwt({secret: secret}), function(req, res){
+/*router.put('/:id', expressJwt({secret: secret}), function(req, res){
   var id = req.params.id;
   var user = req.body;
   User.findByIdAndUpdate(id, user).then(function () {
@@ -19,8 +19,42 @@ router.put('/:id', expressJwt({secret: secret}), function(req, res){
     console.log(err);
     res.status(404).send('weird....');
   });
-});
+});*/
 
+/*router.put('/resetpassword', expressJwt({secret: secret}), function(req, res){
+  console.log(req.user);
+  var username = req.user.username;
+  var pass = req.body.newPass;
+  User.findOneAndUpdate({username: username}, {password: pass}).then(function () {
+    res.end();
+  }).catch(function (err) {
+    console.log(err);
+    res.status(404).send('weird....');
+  });
+});*/
+
+router.put('/resetpassword', expressJwt({secret: secret}), function(req, res) {
+  console.log(req.user)
+  var username = req.user.username;
+  var pass = req.body.newPass;
+  User.findOne({username: username})
+    .then(function(found) {
+      if (found) {
+        found.password = pass;
+      }
+      found.save()
+        .then(function() {
+          res.end()
+        })
+        .catch(function(err) {
+          res.status(500).send(err)
+        })
+    })
+    .catch(function(err) {
+      res.status(404).send(err);
+    })
+  
+});
 
 /**
  *  Request Handler for Put(update) Method
