@@ -44,7 +44,7 @@ export const popupOpen = (content, keyword = 'general') => {
       content: content
     }
   };
-};\
+};
 //====================================================
 // payment actions
 const paymentSuccess = (data) => {
@@ -485,13 +485,11 @@ export const fetchUpdatedProducts = (id = '') => {
 };
 export const onToken = (data) => {
   return dispatch => {
-    const url = '/auth';
+    const url = '/auth/payment';
     helper.postHelper(url, data)
     .then(resp => {
       var updatedState = resp.data;
       if (resp.status == 200) {
-        //right here is where we need to add the pop up for the 
-        //rentSuccess emits the 
         dispatch(paymentSuccess(updatedState));
       }
     })
@@ -508,8 +506,6 @@ export const attemptRentitem = (date, id) => {
     .then(resp => {
       var updatedState = resp.data;
       if (resp.status == 200) {
-        //right here is where we need to add the pop up for the 
-        //rentSuccess emits the 
         dispatch(rentSuccess(updatedState));
       }
     })

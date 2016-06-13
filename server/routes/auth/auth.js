@@ -114,7 +114,7 @@ router.post('/payment', function(req, res){
 
 // (Assuming you're using express - expressjs.com)
 // Get the credit card details submitted by the form
-  var stripeToken = request.body.stripeToken;
+  var stripeToken = req.body.stripeToken;
 
   var charge = stripe.charges.create({
     amount: 1000, // amount in cents, again
@@ -124,7 +124,7 @@ router.post('/payment', function(req, res){
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       // The card has been declined
-      console.log(err)
+      console.log(err);
     }
   });
 })

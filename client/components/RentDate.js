@@ -14,8 +14,9 @@ class RentDateComponent extends Component {
     data.username = this.props.user.username;
     this.props.attemptRentitem(data, this.props.item._id);
   };
-  onToken(token){
+  onToken(data, token){
     data.stripeToken = token;
+    console.log(token);
     this.props.onToken(data);
     //following xhr... is an example of a function
     // xhrStripeTokenToMyServer(token).then( => {
