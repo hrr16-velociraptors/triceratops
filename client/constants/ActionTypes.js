@@ -1,4 +1,10 @@
 /**
+ *  Action related to Chat
+ */
+export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';
+export const MESSAGE_SENT = 'MESSAGE_SENT';
+
+/**
  *  Action related to Auth
  */
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
