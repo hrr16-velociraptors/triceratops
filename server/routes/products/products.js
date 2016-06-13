@@ -52,7 +52,8 @@ router.get('/comments/:id', function(req, res){
  *  @expected Header with Req - { "Authorization": "Bearer <JWT_TOKEN>"}
  *  @return {Object} - contains every data including timestamps, ObjectId, isActivated
  */
-router.post('/', expressJwt({secret: secret}), function(req, res){
+// router.post('/', expressJwt({secret: secret}), function(req, res){
+router.post('/', function(req, res){
   var prod = req.body;
   var newProduct = new Product({
     type: prod.type,
