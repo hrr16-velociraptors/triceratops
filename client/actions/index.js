@@ -96,7 +96,6 @@ export const profileCardPopupOpen = (target) => {
   };
 };
 
->>>>>>> closes #10 password reset feature
 // product actions
 const rentSuccess = (data) => {
   return {
