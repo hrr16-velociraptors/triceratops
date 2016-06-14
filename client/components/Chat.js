@@ -12,15 +12,17 @@ export default class Chat extends Component {
     this.props.chatSetup();
   }
   render () {
+    var classes = 'chatHidden';
+    if (this.props.display) {
+      classes = 'chatBox';
+    }
     return (
       <div>
-      <button id="chatButton" onclick="chatDisplay();">Chat</button>
-      <div className="chatBox">
-      
-        {/* make sure messages gets passed from store from container */}
-        <ChatMessages messages={this.props.messages}/>
-        <ChatBar />
+        <div className={classes}>
+          {/* make sure messages gets passed from store from container */}
+          <ChatMessages messages={this.props.messages}/>
         </div>
+        <ChatBar chatDisplay={this.props.chatDisplay}/>
       </div>
     );
   }

@@ -53,7 +53,7 @@ router.put('/resetpassword', expressJwt({secret: secret}), function(req, res) {
     .catch(function(err) {
       res.status(404).send(err);
     })
-  
+
 });
 
 /**
