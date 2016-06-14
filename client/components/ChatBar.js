@@ -48,6 +48,7 @@ export default class ChatBar extends Component {
               value={this.state.message}
             />
             <input className="submitButton" type="submit" value="Submit" />
+            <button id="chatButton" onClick={this.props.chatDisplay}>Toggle Chat</button>
           </form>
         </div>
       </div>

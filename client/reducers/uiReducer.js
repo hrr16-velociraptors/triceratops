@@ -20,9 +20,17 @@ export default (state = {
   location: {                    // Location for Google map(Being used only for Posting new item)
     lat: 27.28,
     lng: 153.1
-  }
+  },
+  chat: true
 }, action) => {
   switch (action.type) {
+    
+    case types.TOGGLE_CHAT:
+    return {
+      ...state,
+      chat: !state.chat
+    };
+
     case types.SETMAPCENTER:
     return {
       ...state,

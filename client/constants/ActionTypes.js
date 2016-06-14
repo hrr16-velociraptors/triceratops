@@ -1,6 +1,7 @@
 /**
  *  Action related to Chat
  */
+export const TOGGLE_CHAT = 'TOGGLE_CHAT';
 export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';
 export const MESSAGE_SENT = 'MESSAGE_SENT';
 

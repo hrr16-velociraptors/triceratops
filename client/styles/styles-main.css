@@ -13,8 +13,8 @@ body {
 
 .chatButton{
   width: 216px;
-  float: right;
-  right: 0px;
+  float: left;
+  left: 0px;
   position: fixed;
 
 }
@@ -27,12 +27,13 @@ body {
   bottom: 0px;
   float: left;
   left: 0px;
+  z-index: 9999;
 }
 
 .chatBox{
   left: 0px;
   position: fixed;
-  width: 232px;
+  width: 306px;
   float: left;
   bottom: 0;
   z-index: 1000;
@@ -40,13 +41,15 @@ body {
   height: 400px;
   background-color: #ffffff;
 }
-
+.chatHidden{
+  display: none;
+}
 .chatBar{
   float: left;
 
 }
 .chatMessages{
-  height: 400px;
+  height: 200px;
   background-color: #ffffff;
   float: left;
 }

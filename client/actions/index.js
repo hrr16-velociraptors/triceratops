@@ -15,6 +15,12 @@ export const messageSent = (text) => {
   };
 };
 
+export const chatDisplay = () => {
+  return {
+    type: types.TOGGLE_CHAT,
+  };
+};
+
 export const messageReceived = (message) => {
   return {
     type: types.MESSAGE_RECEIVED,
@@ -91,7 +97,7 @@ export const profileCardPopupOpen = (target) => {
   return {
     type: types.PROFILE_CARD_POPUP_OPEN,
     payload: {
-      anchorEl: target 
+      anchorEl: target
     }
   };
 };
@@ -477,7 +483,7 @@ export const addNewComment = (author, date, content, productId) => {
         // dispatch(commentSuccess()); // commentSuccess in reducer does nothing for now.
         dispatch(fetchUpdatedProducts(productId));
         dispatch(fetchUpdatedProducts());
-        // assume refresh redux-router magic ? ask sb. 
+        // assume refresh redux-router magic ? ask sb.
         // dispatch(push('listings/' + productId));
       }
     })
@@ -617,7 +623,7 @@ export const removeRentedItem = (item) => {
 export const attemptPasswordReset = (userData) => {
   return (dispatch) => {
     dispatch(profileCardPopupClose());
-    let url = '/profile/resetpassword' 
+    let url = '/profile/resetpassword'
     helper.putHelper(url, userData)
     .then(resp => {
       let data = resp.data;
@@ -629,4 +635,3 @@ export const attemptPasswordReset = (userData) => {
     })
   };
 };
-
