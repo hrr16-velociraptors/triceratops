@@ -7,6 +7,24 @@ import { reset } from 'redux-form';
 // Synchronous Action Creators
 //////////////////////////////////////////////////////////////
 
+// Chat actions
+export const messageSent = (text) => {
+  return {
+    type: types.MESSAGE_SENT,
+    text // for debug purposes only
+  };
+};
+
+export const messageReceived = (message) => {
+  return {
+    type: types.MESSAGE_RECEIVED,
+    message: {
+      id: message.id,
+      message: message.message.message
+    }
+  }
+}
+
 // Map actions
 export const setMarkerCenter = (pos) => {
   return {
@@ -42,6 +60,38 @@ export const popupOpen = (content, keyword = 'general') => {
     payload: {
       type: keyword,
       content: content
+    }
+  };
+};
+
+//====================================================
+// payment actions
+const paymentSuccess = (data) => {
+  return {
+    type: types.PAYMENT_SUCCESS,
+    payload: data
+  };
+};
+const paymentFailure = () => {
+  return {
+    type: types.PAYMENT_FAILURE
+  };
+};
+//=====================================================
+
+
+// Profile Card Popup actions
+export const profileCardPopupClose = () => {
+  return {
+    type: types.PROFILE_CARD_POPUP_CLOSE
+  };
+};
+
+export const profileCardPopupOpen = (target) => {
+  return {
+    type: types.PROFILE_CARD_POPUP_OPEN,
+    payload: {
+      anchorEl: target 
     }
   };
 };
@@ -257,6 +307,7 @@ export const socialLogin = (userData) => {
   };
 };
 
+
 /**
 *  @param {Object} query - contains query string inside search property
 */
@@ -292,6 +343,29 @@ export const commentSuccess = (updatedCommentsForProduct) => {
 //////////////////////////////////////////////////////////////
 // Asynchronous Action Creator combination
 //////////////////////////////////////////////////////////////
+
+/**
+*  @param {String} messageText - Text of outbound message
+*/
+export const sendMessage = (messageText) => {
+  return (dispatch) => {
+    var pack = {
+      // no need to include user, read from JWT
+      // user:
+      message: messageText
+    }
+    helper.sendSock(pack);
+    dispatch(messageSent(messageText));
+  }
+}
+
+export const chatSetup = () => {
+  return (dispatch) => {
+    helper.startSock((message) => {
+      dispatch(messageReceived(message));
+    });
+  }
+}
 
 /**
 *  @param {Object} userData - Login credentials (username, password)
@@ -403,7 +477,7 @@ export const addNewComment = (author, date, content, productId) => {
         // dispatch(commentSuccess()); // commentSuccess in reducer does nothing for now.
         dispatch(fetchUpdatedProducts(productId));
         dispatch(fetchUpdatedProducts());
-        // assume refresh redux-router magic ? ask sb.
+        // assume refresh redux-router magic ? ask sb. 
         // dispatch(push('listings/' + productId));
       }
     })
@@ -470,7 +544,22 @@ export const fetchUpdatedProducts = (id = '') => {
     });
   };
 };
-
+export const onToken = (data) => {
+  return dispatch => {
+    const url = '/auth/payment/';
+    helper.postHelper(url, data)
+    .then(resp => {
+      var updatedState = resp.data;
+      if (resp.status == 200) {
+        dispatch(paymentSuccess(updatedState));
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      dispatch(paymentFailure());
+    });
+  };
+};
 export const attemptRentitem = (date, id) => {
   return dispatch => {
     const url = '/products/rent/' + id;
@@ -524,3 +613,20 @@ export const removeRentedItem = (item) => {
     });
   };
 };
+
+export const attemptPasswordReset = (userData) => {
+  return (dispatch) => {
+    dispatch(profileCardPopupClose());
+    let url = '/profile/resetpassword' 
+    helper.putHelper(url, userData)
+    .then(resp => {
+      let data = resp.data;
+      dispatch(popupOpen('Password reset successful!'));
+    })
+    .catch( err => {
+      console.error(err);
+      dispatch(popupOpen('Password reset failed!'));
+    })
+  };
+};
+

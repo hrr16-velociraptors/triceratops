@@ -1,4 +1,16 @@
 import axios from 'axios';
+import io from 'socket.io-client';
+var socket = io();
+
+var startSock = function (cb) {
+  socket.on('chat message', function(msg) {
+    cb(msg);
+  });
+}
+
+var sendSock = function (packet) {
+  socket.emit('chat message', packet);
+};
 
 /**
  *  Access JWT token from user's browser. If user has no token,
@@ -100,5 +112,7 @@ module.exports = {
   getHelper: getHelper,
   putHelper: putHelper,
   deleteHelper: deleteHelper,
-  geoFindMe: geoFindMe
+  geoFindMe: geoFindMe,
+  startSock: startSock,
+  sendSock: sendSock
 };

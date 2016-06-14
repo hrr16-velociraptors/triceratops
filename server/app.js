@@ -8,6 +8,7 @@ var auth = require('./routes/auth/auth.js');
 var profile = require('./routes/profile/profile.js');
 var products = require('./routes/products/products.js');
 
+
 var app = express();
 
 app.use('/', express.static(path.resolve(__dirname, '../build')));

@@ -1,4 +1,10 @@
 /**
+ *  Action related to Chat
+ */
+export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';
+export const MESSAGE_SENT = 'MESSAGE_SENT';
+
+/**
  *  Action related to Auth
  */
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -12,6 +18,7 @@ export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const VERIFY_FAILURE = 'VERIFY_FAILURE';
 export const SOCIAL_LOGIN = 'SOCIAL_LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const ATTEMPT_PASSWORD_RESET = 'ATTEMPT_PASSWORD_RESET';
 
 /**
  *  Action related to Products
@@ -29,12 +36,18 @@ export const RENT_SUCCESS = 'RENT_SUCCESS';
 export const RENT_FAILURE = 'RENT_FAILURE';
 export const CANCEL_SUCCESS = 'CANCEL_SUCCESS';
 export const CANCEL_FAILURE = 'CANCEL_FAILURE';
+//Tyrus- added following two lines for stripe payment
+export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
+export const PAYMENT_FAILURE = 'PAYMENT_FAILURE';
+
 
 /**
  *  Action related to UI and others...
  */
 export const POPUP_CLOSE = 'POPUP_CLOSE';
 export const POPUP_OPEN = 'POPUP_OPEN';
+export const PROFILE_CARD_POPUP_CLOSE = 'PROFILE_CARD_POPUP_CLOSE';
+export const PROFILE_CARD_POPUP_OPEN = 'PROFILE_CARD_POPUP_OPEN';
 
 export const UI_TOGGLE_VIEW_MANAGEDLISTING = 'UI_TOGGLE_VIEW_MANAGEDLISTING';
 export const UI_TOGGLE_VIEW_ADDNEWLISTINGFORM = 'UI_TOGGLE_VIEW_ADDNEWLISTINGFORM';

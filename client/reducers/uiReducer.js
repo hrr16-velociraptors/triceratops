@@ -13,6 +13,10 @@ export default (state = {
     open: false,                 // Toggle Popup
     type: ''                     // Indicate Popup type('remove', 'cancel', '') *'' means general popup
   },
+  profileCardPopup: {
+    open: false,
+    anchorEl: null
+  },
   location: {                    // Location for Google map(Being used only for Posting new item)
     lat: 27.28,
     lng: 153.1
@@ -55,7 +59,16 @@ export default (state = {
     return {
       ...state,
       popup: {
-        content: 'Rent Success',
+        content: 'The Date you picked has been reserved',
+        open: true
+      }
+    };
+    //Adding payment popups for stripe credit card payment
+    case types.PAYMENT_SUCCESS:
+    return {
+      ...state,
+      popup: {
+        content: 'Your Payment has been Accepted Thank You!',
         open: true
       }
     };
@@ -75,6 +88,22 @@ export default (state = {
         content: action.payload.content,
         open: true,
         type: action.payload.type
+      }
+    };
+    case types.PROFILE_CARD_POPUP_CLOSE:
+    return {
+      ...state,
+      profileCardPopup: {
+        open: false,
+        anchorEl: null
+      }
+    };
+    case types.PROFILE_CARD_POPUP_OPEN:
+    return {
+      ...state,
+      profileCardPopup: {
+        open: true,
+        anchorEl: action.payload.anchorEl
       }
     };
 
