@@ -1,20 +1,48 @@
 import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import { List, ListItem } from 'material-ui/List';
+import { Popover, PopoverAnimationDefault } from 'material-ui/Popover';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 export default class ProfileCard extends Component{
 
   constructor(props){
     super(props);
+    
+    this.state = {
+      oldPassword: '',
+      newPassword: ''
+    }
+  }
+  
+  handleOldPasswordChange(event){
+    this.setState({
+      oldPassword: event.target.value
+    })
+  }
+  handleNewPasswordChange(event){
+    this.setState({
+      newPassword: event.target.value
+    })
+  }
+  handleSubmit(event){
+    event.preventDefault();
+    this.props.profileCardHandleSubmit(this.state.oldPassword, this.state.newPassword);
+    this.setState({
+      oldPassword: '',
+      newPassword: ''
+    })
   }
 
   renderProfile(){
     if(this.props.cardType === "profile"){
       return (
-        <Card className="profileCards" initiallyExpanded={true}>
+        <Card className="profileCards" initiallyExpanded={false}>
           <CardHeader
             title={"Profile"}
             subtitle={"Edit email, password ..."}
@@ -27,6 +55,59 @@ export default class ProfileCard extends Component{
             <p><strong>Email:</strong> {this.props.user.email}</p>
           </CardText>
           <CardActions expandable={true} style={{paddingTop: 0}}>
+            <FlatButton 
+              onTouchTap={this.props.profileCardPopupOpen} 
+              label={"Reset your password"} 
+            />
+            <Popover
+              open={this.props.ui.profileCardPopup.open}
+              anchorEl={this.props.ui.profileCardPopup.anchorEl}
+              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+              targetOrigin={{horizontal: 'left', vertical: 'top'}}
+              onRequestClose={this.props.profileCardPopupClose}
+            >
+              <form onSubmit={this.handleSubmit.bind(this)} autocomplete="off">
+                <div class="form-group">
+                  <div class="col-md-10">
+                    <TextField 
+                      type="password" 
+                      className="form-control" 
+                      id="oldPassword" 
+                      value={this.state.oldPassword}
+                      placeholder="Current Password"
+                      onChange={this.handleOldPasswordChange.bind(this)}
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-10">
+                    <TextField 
+                      type="password" 
+                      className="form-control" 
+                      id="newPassword" 
+                      value={this.state.newPassword} 
+                      placeholder="New Password" 
+                      onChange={this.handleNewPasswordChange.bind(this)}
+                    />
+                  </div>
+                </div>
+                <RaisedButton class="btn btn-success-outline" type="submit" label="Change Password" />
+              </form>
+            </Popover>
+            <Dialog
+              actions={
+                <FlatButton
+                  label="OK"
+                  primary={true}
+                  onClick={this.props.popupClose}
+                />
+              }
+              modal={false}
+              open={this.props.ui.popup.open}
+              onRequestClose={this.props.popupClose}
+            >
+              {this.props.ui.popup.content}
+            </Dialog>
           </CardActions>
         </Card>
       )

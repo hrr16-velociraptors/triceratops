@@ -24,13 +24,18 @@ class ProfileComponent extends Component {
 
   render(){
 
-  const { user, products } = this.props;
+  const { user, products, ui } = this.props;
 
     return (
       <div>
         <ProfileCard
           cardType={'profile'}
           user={user}
+          ui={ui}
+          popupClose={this.props.popupClose}
+          profileCardPopupClose={this.props.profileCardPopupClose}
+          profileCardPopupOpen={this.props.profileCardPopupOpen}
+          profileCardHandleSubmit={this.props.profileCardHandleSubmit}
         />
         <ProfileCard
           cardType={'listings'}

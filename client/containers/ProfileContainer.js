@@ -10,6 +10,24 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchUpdatedProducts: () => {
       dispatch(actions.fetchUpdatedProducts());
+    },
+    popupClose: () => {
+      dispatch(actions.popupClose());
+    },
+    profileCardPopupClose: () => {
+      dispatch(actions.profileCardPopupClose());
+    },
+    profileCardPopupOpen: (event) => {
+      event.preventDefault();
+      let target = event.currentTarget;
+      dispatch(actions.profileCardPopupOpen(target)); 
+    },
+    profileCardHandleSubmit: (oldPass, newPass) => {
+      let user = {
+        oldPass: oldPass,
+        newPass: newPass
+      }
+      dispatch(actions.attemptPasswordReset(user));
     }
   };
 };
@@ -18,7 +36,8 @@ function mapStateToProps(state, ownProps) {
   return {
     user: state.user,
     auth: state.auth,
-    products: state.products
+    products: state.products,
+    ui: state.ui
   };
 }
 

@@ -49,6 +49,7 @@ router.post('/login', function(req, res){
  */
 router.post('/signup', function(req, res){
   var user = req.body;
+  console.log(user)
   User.findOne({username: user.username})
     .then(function(found){
       if(!found){

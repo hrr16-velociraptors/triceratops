@@ -63,6 +63,7 @@ export const popupOpen = (content, keyword = 'general') => {
     }
   };
 };
+
 //====================================================
 // payment actions
 const paymentSuccess = (data) => {
@@ -77,6 +78,25 @@ const paymentFailure = () => {
   };
 };
 //=====================================================
+
+
+// Profile Card Popup actions
+export const profileCardPopupClose = () => {
+  return {
+    type: types.PROFILE_CARD_POPUP_CLOSE
+  };
+};
+
+export const profileCardPopupOpen = (target) => {
+  return {
+    type: types.PROFILE_CARD_POPUP_OPEN,
+    payload: {
+      anchorEl: target 
+    }
+  };
+};
+
+>>>>>>> closes #10 password reset feature
 // product actions
 const rentSuccess = (data) => {
   return {
@@ -288,6 +308,7 @@ export const socialLogin = (userData) => {
   };
 };
 
+
 /**
 *  @param {Object} query - contains query string inside search property
 */
@@ -457,7 +478,7 @@ export const addNewComment = (author, date, content, productId) => {
         // dispatch(commentSuccess()); // commentSuccess in reducer does nothing for now.
         dispatch(fetchUpdatedProducts(productId));
         dispatch(fetchUpdatedProducts());
-        // assume refresh redux-router magic ? ask sb.
+        // assume refresh redux-router magic ? ask sb. 
         // dispatch(push('listings/' + productId));
       }
     })
@@ -593,3 +614,20 @@ export const removeRentedItem = (item) => {
     });
   };
 };
+
+export const attemptPasswordReset = (userData) => {
+  return (dispatch) => {
+    dispatch(profileCardPopupClose());
+    let url = '/profile/resetpassword' 
+    helper.putHelper(url, userData)
+    .then(resp => {
+      let data = resp.data;
+      dispatch(popupOpen('Password reset successful!'));
+    })
+    .catch( err => {
+      console.error(err);
+      dispatch(popupOpen('Password reset failed!'));
+    })
+  };
+};
+
