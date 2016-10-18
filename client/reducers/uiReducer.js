@@ -21,7 +21,7 @@ export default (state = {
     lat: 27.28,
     lng: 153.1
   },
-  chat: true
+  chat: false
 }, action) => {
   switch (action.type) {
     
